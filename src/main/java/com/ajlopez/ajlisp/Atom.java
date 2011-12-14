@@ -1,9 +1,9 @@
 package com.ajlopez.ajlisp;
 
-public class NamedAtom {
+public class Atom {
 	private String name;
 
-	public NamedAtom(String name) {
+	public Atom(String name) {
 		this.name = name;
 	}
 

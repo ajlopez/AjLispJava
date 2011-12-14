@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class NamedAtomTests {
+public class AtomTests {
 
 	@Test
 	public void createNamedAtom() {
-		NamedAtom atom = new NamedAtom("foo");
+		Atom atom = new Atom("foo");
 		assertEquals("foo", atom.getName());
 	}
 }

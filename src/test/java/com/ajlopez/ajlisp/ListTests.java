@@ -15,8 +15,8 @@ public class ListTests {
 
 	@Test
 	public void createWithTwoAtoms() {
-		NamedAtom a = new NamedAtom("a");
-		NamedAtom b = new NamedAtom("b");
+		Atom a = new Atom("a");
+		Atom b = new Atom("b");
 		
 		List list = new List(a, new List(b));
 		assertEquals(a, list.first());
