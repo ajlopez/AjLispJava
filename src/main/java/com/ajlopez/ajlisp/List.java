@@ -1,6 +1,6 @@
 package com.ajlopez.ajlisp;
 
-public class List {
+public class List implements IExpression {
 	private Object first;
 	private Object rest;
 	
@@ -23,5 +23,9 @@ public class List {
 	public Object rest()
 	{
 		return this.rest;
+	}
+
+	public Object evaluate(Environment environment) {
+		return null;
 	}
 }

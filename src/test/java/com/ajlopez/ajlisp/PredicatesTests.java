@@ -8,9 +8,9 @@ public class PredicatesTests {
 
 	@Test
 	public void isAtom() {
-		assert Predicates.isAtom(1);
-		assert Predicates.isAtom("foo");
-		assert Predicates.isAtom(new Atom("bar"));
+		assertTrue(Predicates.isAtom(1));
+		assertTrue(Predicates.isAtom("foo"));
+		assertTrue(Predicates.isAtom(new Atom("bar")));
 		
 		assertFalse(Predicates.isAtom(new List(1)));
 	}
@@ -23,5 +23,4 @@ public class PredicatesTests {
 		
 		assertTrue(Predicates.isList(new List(1)));
 	}
-
 }

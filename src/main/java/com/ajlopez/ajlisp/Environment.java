@@ -4,7 +4,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class Environment {
-	Dictionary values = new Hashtable();
+	Dictionary<String, Object> values = new Hashtable<String, Object>();
 	
 	public Object getValue(String name) {
 		return values.get(name);
