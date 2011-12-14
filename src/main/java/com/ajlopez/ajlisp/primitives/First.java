@@ -1,9 +1,9 @@
 package com.ajlopez.ajlisp.primitives;
 
 import com.ajlopez.ajlisp.Environment;
-import com.ajlopez.ajlisp.IExpression;
 import com.ajlopez.ajlisp.IForm;
 import com.ajlopez.ajlisp.List;
+import com.ajlopez.ajlisp.Machine;
 
 public class First implements IForm {
 
@@ -22,17 +22,6 @@ public class First implements IForm {
 		if (list == null)
 			return null;
 		
-		return new List(evaluateObject(environment, list.first()), evaluateList(environment, (List) list.rest()));   
-	}
-	
-	private static Object evaluateObject(Environment environment, Object object)
-	{
-		if (object == null)
-			return null;
-		
-		if (object instanceof IExpression)
-			return ((IExpression) object).evaluate(environment);
-		
-		return object;
+		return new List(Machine.evaluate(environment, list.first()), evaluateList(environment, (List) list.rest()));   
 	}
 }
