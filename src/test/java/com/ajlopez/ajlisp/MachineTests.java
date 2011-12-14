@@ -19,7 +19,6 @@ public class MachineTests {
 		assertEquals(first, Machine.evaluate(environment, first));
 	}
 
-
 	@Test
 	public void evaluateAtoms() {
 		Environment environment = new Environment();

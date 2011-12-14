@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.ajlopez.ajlisp.primitives.First;
+
 public class ListTests {
 
 	@Test
@@ -24,4 +26,21 @@ public class ListTests {
 		assertEquals(b, ((List)list.rest()).first());
 	}
 
+	@Test
+	public void evaluateListWithFirst()
+	{
+		Environment environment = new Environment();
+		First first = new First();
+		Atom a = new Atom("a");
+		List list = new List(a);
+		Atom b = new Atom("b");
+		environment.setValue("b", list);
+		
+		List expr = new List(first, new List(b));
+		
+		Object result = expr.evaluate(environment);
+		
+		assertEquals(a, result);
+	}
 }
+
