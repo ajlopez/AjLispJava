@@ -1,6 +1,6 @@
 package com.ajlopez.ajlisp;
 
-public class List implements IExpression {
+public class List implements IExpression, IForm {
 	private Object first;
 	private Object rest;
 	
@@ -26,6 +26,10 @@ public class List implements IExpression {
 	}
 
 	public Object evaluate(Environment environment) {
+		return null;
+	}
+
+	public Object evaluate(Environment environment, List arguments) {
 		return null;
 	}
 }

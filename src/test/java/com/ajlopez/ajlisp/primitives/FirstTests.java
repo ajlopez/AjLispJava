@@ -20,4 +20,15 @@ public class FirstTests {
 		assertEquals(a, first.apply(environment, new List(list)));
 	}
 
+	@Test
+	public void evaluateSimpleList() {
+		First first = new First();
+		Environment environment = new Environment();
+		Atom a = new Atom("a");
+		List list = new List(a);
+		Atom b = new Atom("b");
+		environment.setValue("b", list);
+		
+		assertEquals(a, first.evaluate(environment, new List(b)));
+	}
 }
