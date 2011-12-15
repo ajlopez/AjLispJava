@@ -29,5 +29,4 @@ public class ConsTests {
 		
 		assertEquals("bar", rest);
 	}
-
 }

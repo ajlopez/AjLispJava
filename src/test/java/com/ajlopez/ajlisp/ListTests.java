@@ -42,5 +42,24 @@ public class ListTests {
 		
 		assertEquals(a, result);
 	}
+
+	@Test
+	public void evaluateListWithFirstAtom()
+	{
+		Environment environment = new Environment();
+		First first = new First();
+		environment.setValue("first", first);
+		Atom afirst = new Atom("first");
+		Atom a = new Atom("a");
+		List list = new List(a);
+		Atom b = new Atom("b");
+		environment.setValue("b", list);
+		
+		List expr = new List(afirst, new List(b));
+		
+		Object result = expr.evaluate(environment);
+		
+		assertEquals(a, result);
+	}
 }
 
