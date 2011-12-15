@@ -20,9 +20,14 @@ public class Lexer {
 		if (ich == -1)
 			return null;
 		
+		char ch = (char)ich;
+		
+		if (ch == '(' || ch ==')')
+			return new Token("" + ch, TokenType.SEPARATOR);
+		
 		String value = "";
 		
-		while (ich != -1 && Character.isLetter((char) ich)) {
+		while (ich != -1 && !Character.isSpaceChar((char) ich)) {
 			value += (char)ich;
 			
 			ich = this.reader.read();
