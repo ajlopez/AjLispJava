@@ -19,7 +19,15 @@ public class ConsTests {
 		
 		assertNotNull(result);
 		assertTrue(result instanceof List);
-		assertEquals("foo", ((List)result).first());
+		
+		List lresult = (List) result;
+		assertEquals("foo", lresult.first());
+		
+		Object rest = lresult.rest();
+		
+		assertNotNull(rest);
+		
+		assertEquals("bar", rest);
 	}
 
 }
