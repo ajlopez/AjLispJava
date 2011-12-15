@@ -21,4 +21,17 @@ public class LexerTests {
 		assertNull(lexer.nextToken());
 	}
 
+
+	@Test
+	public void getNameWithSpaces() throws IOException {
+		Lexer lexer = new Lexer("  foo  ");
+		
+		Token token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("foo", token.getValue());
+		assertEquals(TokenType.NAME, token.getType());
+		
+		assertNull(lexer.nextToken());
+	}
 }

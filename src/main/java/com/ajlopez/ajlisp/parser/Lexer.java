@@ -13,6 +13,13 @@ public class Lexer {
 
 	public Token nextToken() throws IOException  {
 		int ich = this.reader.read();
+		
+		while (ich != -1 && Character.isSpaceChar((char) ich))
+			ich = this.reader.read();
+		
+		if (ich == -1)
+			return null;
+		
 		String value = "";
 		
 		while (ich != -1 && Character.isLetter((char) ich)) {
@@ -20,9 +27,6 @@ public class Lexer {
 			
 			ich = this.reader.read();
 		}
-		
-		if (value == "")
-			return null;
 		
 		return new Token(value, TokenType.NAME);
 	}
