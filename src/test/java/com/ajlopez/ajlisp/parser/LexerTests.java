@@ -66,4 +66,29 @@ public class LexerTests {
 		
 		assertNull(lexer.nextToken());
 	}
+
+	@Test
+	public void getSimpleList() throws IOException {
+		Lexer lexer = new Lexer("(a)");
+		
+		Token token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("(", token.getValue());
+		assertEquals(TokenType.SEPARATOR, token.getType());
+		
+		token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("a", token.getValue());
+		assertEquals(TokenType.NAME, token.getType());
+		
+		token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals(")", token.getValue());
+		assertEquals(TokenType.SEPARATOR, token.getType());
+		
+		assertNull(lexer.nextToken());
+	}
 }
