@@ -86,9 +86,23 @@ public class EvaluationTests {
 	}
 
 	@Test
+	public void defineAndEvaluateFConsUsingFLambda() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define fcons (flambda (a b) (cons a b)))");
+		assertEquals("(a b c)", evaluateExpressionAsString("(fcons a (b c))"));
+	}
+
+	@Test
 	public void defineAndEvaluateFList() throws IOException, ParseException, LexerException
 	{
 		evaluateExpression("(definef flist x x)");
+		assertEquals("(a b c)", evaluateExpressionAsString("(flist a b c)"));
+	}
+
+	@Test
+	public void defineAndEvaluateFListUsinfFLambda() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define flist (flambda x x))");
 		assertEquals("(a b c)", evaluateExpressionAsString("(flist a b c)"));
 	}
 
@@ -100,9 +114,23 @@ public class EvaluationTests {
 	}
 
 	@Test
+	public void defineAndEvaluateMyListUsingLambda() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define mylist (lambda x x))");
+		assertEquals("(a b c)", evaluateExpressionAsString("(mylist (quote a) (quote b) (quote c))"));
+	}
+
+	@Test
 	public void defineAndEvaluateMCons() throws IOException, ParseException, LexerException
 	{
 		evaluateExpression("(definem mcons (a b) (cons a b))");
+		assertEquals(1, evaluateExpression("(mcons first ((quote (1 2))))"));
+	}
+
+	@Test
+	public void defineAndEvaluateMConsUsingMLambda() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define mcons (mlambda (a b) (cons a b)))");
 		assertEquals(1, evaluateExpression("(mcons first ((quote (1 2))))"));
 	}
 	
