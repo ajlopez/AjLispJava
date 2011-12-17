@@ -24,4 +24,17 @@ public class DoTests {
 		Object result = doprim.evaluate(environment, body);
 		assertEquals("(5 . 6)", Machine.printString(result));
 	}
+
+	@Test
+	public void simpleDefines() throws IOException, ParseException, LexerException {
+		Environment environment = new Environment();
+		environment.setValue("define", new Define());
+		List body = (List)(new Parser("((define a 1) (define b 2) (define c 3))")).parseExpression();
+		Do doprim = new Do();
+		Object result = doprim.evaluate(environment, body);
+		assertEquals(3, result);
+		assertEquals(1, environment.getValue("a"));
+		assertEquals(2, environment.getValue("b"));
+		assertEquals(3, environment.getValue("c"));
+	}
 }
