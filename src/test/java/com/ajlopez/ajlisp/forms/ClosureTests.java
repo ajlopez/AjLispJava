@@ -14,20 +14,29 @@ import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
 import com.ajlopez.ajlisp.primitives.Cons;
 
-public class BindTests {
+public class ClosureTests {
+
+
 	@Test
 	public void simpleEvaluate() throws IOException, ParseException, LexerException {
-		Object names = (new Parser("(a b)")).parseExpression();
+		Object names = (new Parser("(a)")).parseExpression();
 		List body = (List)(new Parser("((cons a b))")).parseExpression();
 		Bind bind = new Bind(names, body);
 		List arguments = (List)(new Parser("(1 2)")).parseExpression();
 
 		Environment environment = new Environment();
+		environment.setValue("b", 2);
 		environment.setValue("cons", new Cons());
+		Environment closureenv = new Environment(environment);
+		closureenv.setValue("b", 3);
 		
-		Object result = bind.evaluate(environment, arguments);
+		Closure closure = new Closure(closureenv, bind);
 		
-		assertEquals("(1 . 2)", Machine.printString(result));
+		Object result = closure.evaluate(environment, arguments);
+		
+		assertEquals(2, environment.getValue("b"));
+		assertEquals(3, closureenv.getValue("b"));
+		assertEquals("(1 . 3)", Machine.printString(result));
 	}
 
 }
