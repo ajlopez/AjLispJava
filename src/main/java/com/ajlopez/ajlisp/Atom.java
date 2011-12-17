@@ -10,13 +10,12 @@ public class Atom implements IExpression {
 	public String getName() {
 		return this.name;
 	}
-
-	/* (non-Javadoc)
-	 * @see com.ajlopez.ajlisp.IExpression#evaluate(com.ajlopez.ajlisp.Environment)
-	 */
-	@Override
+	
 	public Object evaluate(Environment environment) {
 		return environment.getValue(this.name);
 	}
 
+	public String printString() {
+		return this.name;
+	}
 }
