@@ -34,6 +34,32 @@ public class EvaluationTests {
 		assertEquals(1, evaluateExpression("(define a 1)"));
 		assertEquals(2, evaluateExpression("(define b 2)"));
 		assertEquals(3, evaluateExpression("(define c 3)"));
+		
+		assertEquals(1, evaluateExpression("a"));
+		assertEquals(2, evaluateExpression("b"));
+		assertEquals(3, evaluateExpression("c"));
+	}
+	
+	@Test
+	public void evaluateCons() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define a (quote one))");
+		evaluateExpression("(define b (quote two))");
+		assertEquals("(one . two)", evaluateExpressionAsString("(cons a b)"));
+	}
+	
+	@Test
+	public void evaluateFirst() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define a (quote (b c)))");
+		assertEquals("b", evaluateExpressionAsString("(first a)"));
+	}
+	
+	@Test
+	public void evaluateRest() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define a (quote (b c)))");
+		assertEquals("(c)", evaluateExpressionAsString("(rest a)"));
 	}
 	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
@@ -41,5 +67,9 @@ public class EvaluationTests {
 		Parser parser = new Parser(text);
 		Object expr = parser.parseExpression();
 		return this.machine.evaluate(expr);
+	}
+	
+	private String evaluateExpressionAsString(String text) throws IOException, ParseException, LexerException {
+		return Machine.printString(this.evaluateExpression(text));
 	}
 }

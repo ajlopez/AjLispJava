@@ -1,6 +1,10 @@
 package com.ajlopez.ajlisp;
 
+import com.ajlopez.ajlisp.primitives.Cons;
 import com.ajlopez.ajlisp.primitives.Define;
+import com.ajlopez.ajlisp.primitives.First;
+import com.ajlopez.ajlisp.primitives.Quote;
+import com.ajlopez.ajlisp.primitives.Rest;
 
 public class Machine {
 	private Environment environment = new Environment();
@@ -17,6 +21,10 @@ public class Machine {
 	
 	public Machine() {
 		this.environment.setValue("define", Define.getInstance());
+		this.environment.setValue("quote", Quote.getInstance());
+		this.environment.setValue("cons", Cons.getInstance());
+		this.environment.setValue("first", First.getInstance());
+		this.environment.setValue("rest", Rest.getInstance());
 	}
 
 	public Environment getEnvironment() {
