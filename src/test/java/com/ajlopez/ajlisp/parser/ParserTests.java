@@ -41,5 +41,49 @@ public class ParserTests {
 		assertTrue(first instanceof Atom);
 		assertEquals("a", ((Atom)first).getName());
 	}
+
+	@Test
+	public void parseNestedList() throws IOException, ParseException {
+		Parser parser = new Parser("(a (b c))");
+		
+		Object result = parser.parseExpression();
+		
+		assertNotNull(result);
+		assertTrue(result instanceof List);
+		
+		List list = (List)result;
+		
+		Object first = list.first();
+		
+		assertNotNull(first);
+		assertTrue(first instanceof Atom);
+		assertEquals("a", ((Atom)first).getName());
+		
+		assertNotNull(list.rest());
+		assertTrue(list.rest() instanceof List);
+		
+		list = (List)list.rest();		
+		first = list.first();
+		
+		assertNotNull(first);
+		assertTrue(first instanceof List);
+		
+		list = (List)first;
+		first = list.first();
+		
+		assertNotNull(first);
+		assertTrue(first instanceof Atom);
+		assertEquals("b", ((Atom)first).getName());
+		
+		assertNotNull(list.rest());
+		assertTrue(list.rest() instanceof List);
+		
+		list = (List)list.rest();		
+		first = list.first();
+		
+		assertNotNull(first);
+		assertTrue(first instanceof Atom);
+		assertEquals("c", ((Atom)first).getName());
+	}
 }
 
