@@ -49,6 +49,12 @@ public class EvaluationTests {
 	}
 	
 	@Test
+	public void evaluateQuotedList() throws IOException, ParseException, LexerException
+	{
+		assertEquals("(a b)", evaluateExpressionAsString("(quote (a b))"));
+	}
+	
+	@Test
 	public void evaluateFirst() throws IOException, ParseException, LexerException
 	{
 		evaluateExpression("(define a (quote (b c)))");
@@ -70,6 +76,34 @@ public class EvaluationTests {
 		assertEquals(1, evaluateExpression("a"));
 		assertEquals(2, evaluateExpression("b"));
 		assertEquals(3, evaluateExpression("c"));
+	}
+
+	@Test
+	public void defineAndEvaluateFCons() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(definef fcons (a b) (cons a b))");
+		assertEquals("(a b c)", evaluateExpressionAsString("(fcons a (b c))"));
+	}
+
+	@Test
+	public void defineAndEvaluateFList() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(definef flist x x)");
+		assertEquals("(a b c)", evaluateExpressionAsString("(flist a b c)"));
+	}
+
+	@Test
+	public void defineAndEvaluateMyList() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define mylist x x)");
+		assertEquals("(a b c)", evaluateExpressionAsString("(mylist (quote a) (quote b) (quote c))"));
+	}
+
+	@Test
+	public void defineAndEvaluateMCons() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(definem mcons (a b) (cons a b))");
+		assertEquals(1, evaluateExpression("(mcons first ((quote (1 2))))"));
 	}
 	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException

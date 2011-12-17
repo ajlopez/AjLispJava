@@ -7,9 +7,9 @@ import com.ajlopez.ajlisp.Machine;
 
 public class Closure implements IForm {
 	private Environment closure;
-	private IForm form;
+	private Bind form;
 	
-	public Closure(Environment closure, IForm form) {
+	public Closure(Environment closure, Bind form) {
 		this.closure = closure;
 		this.form = form;
 	}
