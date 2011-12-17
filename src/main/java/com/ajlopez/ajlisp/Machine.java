@@ -1,5 +1,7 @@
 package com.ajlopez.ajlisp;
 
+import com.ajlopez.ajlisp.primitives.Define;
+
 public class Machine {
 	private Environment environment = new Environment();
 	
@@ -11,6 +13,10 @@ public class Machine {
 			return ((IExpression) object).evaluate(environment);
 		
 		return object;
+	}
+	
+	public Machine() {
+		this.environment.setValue("define", Define.getInstance());
 	}
 
 	public Environment getEnvironment() {
