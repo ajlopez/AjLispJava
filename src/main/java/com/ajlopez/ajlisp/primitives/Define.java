@@ -18,11 +18,19 @@ public class Define implements IForm {
 	
 	public Object evaluate(Environment environment, List arguments) {
 		Atom atom = (Atom)arguments.first();
-		Object object = ((List)arguments.rest()).first();
-		Object value = Machine.evaluate(environment, object);
+		List list = (List)arguments.rest();
+		Object value = null;
+		
+		if (list.rest() == null) {		
+			Object object = list.first();
+			value = Machine.evaluate(environment, object);
+		}
+		else {
+			value = Lambda.getInstance().evaluate(environment, list);
+		}
 		
 		environment.getTopEnvironment().setValue(atom.getName(), value);
-		
+
 		return value;
 	}
 }
