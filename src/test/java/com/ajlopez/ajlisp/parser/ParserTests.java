@@ -12,7 +12,7 @@ import com.ajlopez.ajlisp.List;
 public class ParserTests {
 
 	@Test
-	public void parseAtom() throws IOException, ParseException {
+	public void parseAtom() throws IOException, ParseException, LexerException {
 		Parser parser = new Parser("a");
 		
 		Object result = parser.parseExpression();
@@ -25,7 +25,7 @@ public class ParserTests {
 	}
 
 	@Test
-	public void parseSimpleList() throws IOException, ParseException {
+	public void parseSimpleList() throws IOException, ParseException, LexerException {
 		Parser parser = new Parser("(a)");
 		
 		Object result = parser.parseExpression();
@@ -43,7 +43,7 @@ public class ParserTests {
 	}
 
 	@Test
-	public void parseNestedList() throws IOException, ParseException {
+	public void parseNestedList() throws IOException, ParseException, LexerException {
 		Parser parser = new Parser("(a (b c))");
 		
 		Object result = parser.parseExpression();
@@ -87,7 +87,7 @@ public class ParserTests {
 	}
 
 	@Test
-	public void parseNestedListMixedValues() throws IOException, ParseException {
+	public void parseNestedListMixedValues() throws IOException, ParseException, LexerException {
 		Parser parser = new Parser("(a (123 \"foo\") c d)");
 		
 		Object result = parser.parseExpression();
@@ -101,7 +101,7 @@ public class ParserTests {
 	}
 
 	@Test
-	public void parseDottedList() throws IOException, ParseException {
+	public void parseDottedList() throws IOException, ParseException, LexerException {
 		Parser parser = new Parser("(a . b)");
 		
 		Object result = parser.parseExpression();

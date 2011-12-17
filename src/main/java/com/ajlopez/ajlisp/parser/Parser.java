@@ -14,7 +14,7 @@ public class Parser {
 		this.lexer = new Lexer(string);
 	}
 
-	public Object parseExpression() throws IOException, ParseException {
+	public Object parseExpression() throws IOException, ParseException, LexerException {
 		Token token = this.nextToken();
 		
 		if (token == null)
@@ -27,12 +27,14 @@ public class Parser {
 			case SEPARATOR:
 				if (token.getValue().equals("("))
 					return this.parseList();
+			case STRING:
+				return token.getValue();
 		}
 		
 		throw new ParseException("Unexpected Token");
 	}
 	
-	private Object parseList() throws IOException, ParseException
+	private Object parseList() throws IOException, ParseException, LexerException
 	{
 		Token token = this.nextToken();
 		Stack<Object> expressions = new Stack<Object>();	
@@ -56,7 +58,7 @@ public class Parser {
 		return result;
 	}
 	
-	private Token nextToken() throws IOException
+	private Token nextToken() throws IOException, LexerException
 	{
 		if (!this.tokens.empty())
 			return this.tokens.pop();

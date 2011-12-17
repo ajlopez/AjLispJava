@@ -15,7 +15,7 @@ public class Lexer {
 		this.reader = new StringReader(text);
 	}
 
-	public Token nextToken() throws IOException  {
+	public Token nextToken() throws IOException, LexerException  {
 		int ich;
 		
 		// TODO review the use of stack/queue
@@ -38,6 +38,9 @@ public class Lexer {
 		if (operators.indexOf(ch) >= 0)
 			return new Token("" + ch, TokenType.OPERATOR);
 		
+		if (ch == '"')
+			return nextString();
+		
 		String value = "";
 		
 		while (ich != -1 && !Character.isSpaceChar((char) ich) && !(separators.indexOf((char)ich)>=0)) {
@@ -50,5 +53,18 @@ public class Lexer {
 			this.characters.push((char)ich);
 		
 		return new Token(value, TokenType.NAME);
+	}
+	
+	private Token nextString() throws LexerException, IOException {
+		String value = "";
+		int ich;
+		
+		for (ich = this.reader.read(); ich != -1 && ((char)ich)!='"'; ich = this.reader.read())
+			value += (char)ich;
+		
+		if (ich == -1)
+			throw new LexerException("Unexpected end of input");
+		
+		return new Token(value, TokenType.STRING);
 	}
 }

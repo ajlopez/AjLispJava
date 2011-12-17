@@ -6,13 +6,14 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
 
 public class EvaluationTests {
 
 	@Test
-	public void evaluateAtom() throws IOException, ParseException {
+	public void evaluateAtom() throws IOException, ParseException, LexerException {
 		Machine machine = new Machine();
 		machine.getEnvironment().setValue("one", 1);
 		Parser parser = new Parser("one");
