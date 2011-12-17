@@ -62,4 +62,11 @@ public class Environment {
 		
 		this.setValue(atom.getName(), values);
 	}
+	
+	public Environment getTopEnvironment(){
+		if (this.parent == null)
+			return this;
+		
+		return this.parent.getTopEnvironment();
+	}
 }

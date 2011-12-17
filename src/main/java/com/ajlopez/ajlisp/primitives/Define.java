@@ -13,7 +13,7 @@ public class Define implements IForm {
 		Object object = ((List)arguments.rest()).first();
 		Object value = Machine.evaluate(environment, object);
 		
-		environment.setValue(atom.getName(), value);
+		environment.getTopEnvironment().setValue(atom.getName(), value);
 		
 		return value;
 	}
