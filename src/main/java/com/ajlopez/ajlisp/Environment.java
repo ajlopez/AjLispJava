@@ -48,4 +48,18 @@ public class Environment {
 			names = (List)rest;
 		}
 	}
+	
+	public void setValues(Object names, List values) {
+		if (names == null)
+			return;
+		
+		if (names instanceof List) {
+			this.setValues((List) names, values);
+			return;
+		}
+		
+		Atom atom = (Atom) names;
+		
+		this.setValue(atom.getName(), values);
+	}
 }

@@ -68,7 +68,7 @@ public class EnvironmentTests {
 	
 	@Test
 	public void setValuesWithDottedName() throws IOException, ParseException, LexerException {
-		List names = (List) (new Parser("(a . b)")).parseExpression();
+		Object names = (new Parser("(a . b)")).parseExpression();
 		List values = (List) (new Parser("(1 2 3)")).parseExpression();
 		
 		Environment environment = new Environment();
@@ -76,5 +76,16 @@ public class EnvironmentTests {
 		
 		assertEquals(1, environment.getValue("a"));
 		assertEquals("(2 3)", Machine.printString(environment.getValue("b")));
+	}
+	
+	@Test
+	public void setValuesWithAtomName() throws IOException, ParseException, LexerException {
+		Object names = (new Parser("a")).parseExpression();
+		List values = (List) (new Parser("(1 2 3)")).parseExpression();
+		
+		Environment environment = new Environment();
+		environment.setValues(names, values);
+		
+		assertEquals("(1 2 3)", Machine.printString(environment.getValue("a")));
 	}
 }
