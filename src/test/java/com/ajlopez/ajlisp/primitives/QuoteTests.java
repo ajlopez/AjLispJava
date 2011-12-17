@@ -12,11 +12,10 @@ public class QuoteTests {
 
 	@Test
 	public void simpleEvaluate() {
-		Quote quote = new Quote();
 		Environment environment = new Environment();
 		Atom atom = new Atom("a");
 		
-		Object result = quote.evaluate(environment, new List(atom));
+		Object result = Quote.getInstance().evaluate(environment, new List(atom));
 		
 		assertNotNull(result);
 		assertEquals(atom, result);

@@ -12,23 +12,21 @@ public class RestTests {
 
 	@Test
 	public void applyToSimpleList() {
-		Rest rest = new Rest();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
 		
-		assertNull(rest.apply(environment, new List(list)));
+		assertNull(Rest.getInstance().apply(environment, new List(list)));
 	}
 
 	@Test
 	public void evaluateSimpleList() {
-		Rest rest = new Rest();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
 		Atom b = new Atom("b");
 		environment.setValue("b", list);
 		
-		assertNull(rest.evaluate(environment, new List(b)));
+		assertNull(Rest.getInstance().evaluate(environment, new List(b)));
 	}
 }

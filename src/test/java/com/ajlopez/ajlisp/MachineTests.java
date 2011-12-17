@@ -12,7 +12,7 @@ public class MachineTests {
 	public void evaluateObjects() {
 		Environment environment = new Environment();
 		
-		First first = new First();
+		First first = First.getInstance();
 		
 		assertEquals(1, Machine.evaluate(environment, 1));
 		assertEquals("foo", Machine.evaluate(environment, "foo"));

@@ -30,7 +30,7 @@ public class ListTests {
 	public void evaluateListWithFirst()
 	{
 		Environment environment = new Environment();
-		First first = new First();
+		First first = First.getInstance();
 		Atom a = new Atom("a");
 		List list = new List(a);
 		Atom b = new Atom("b");
@@ -47,7 +47,7 @@ public class ListTests {
 	public void evaluateListWithFirstAtom()
 	{
 		Environment environment = new Environment();
-		First first = new First();
+		First first = First.getInstance();
 		environment.setValue("first", first);
 		Atom afirst = new Atom("first");
 		Atom a = new Atom("a");

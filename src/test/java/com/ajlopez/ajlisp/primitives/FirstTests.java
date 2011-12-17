@@ -12,7 +12,7 @@ public class FirstTests {
 
 	@Test
 	public void applyToSimpleList() {
-		First first = new First();
+		First first = First.getInstance();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
@@ -22,7 +22,7 @@ public class FirstTests {
 
 	@Test
 	public void evaluateSimpleList() {
-		First first = new First();
+		First first = First.getInstance();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
