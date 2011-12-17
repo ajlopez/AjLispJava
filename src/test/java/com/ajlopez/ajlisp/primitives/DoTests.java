@@ -18,9 +18,9 @@ public class DoTests {
 	@Test
 	public void simpleEvaluate() throws IOException, ParseException, LexerException {
 		Environment environment = new Environment();
-		environment.setValue("cons", new Cons());
+		environment.setValue("cons", Cons.getInstance());
 		List body = (List)(new Parser("((cons 1 2) (cons 3 4) (cons 5 6))")).parseExpression();
-		Do doprim = new Do();
+		Do doprim = Do.getInstance();
 		Object result = doprim.evaluate(environment, body);
 		assertEquals("(5 . 6)", Machine.printString(result));
 	}
@@ -28,9 +28,9 @@ public class DoTests {
 	@Test
 	public void simpleDefines() throws IOException, ParseException, LexerException {
 		Environment environment = new Environment();
-		environment.setValue("define", new Define());
+		environment.setValue("define", Define.getInstance());
 		List body = (List)(new Parser("((define a 1) (define b 2) (define c 3))")).parseExpression();
-		Do doprim = new Do();
+		Do doprim = Do.getInstance();
 		Object result = doprim.evaluate(environment, body);
 		assertEquals(3, result);
 		assertEquals(1, environment.getValue("a"));

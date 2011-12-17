@@ -23,7 +23,7 @@ public class BindTests {
 		List arguments = (List)(new Parser("(1 2)")).parseExpression();
 
 		Environment environment = new Environment();
-		environment.setValue("cons", new Cons());
+		environment.setValue("cons", Cons.getInstance());
 		
 		Object result = bind.evaluate(environment, arguments);
 		

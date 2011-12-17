@@ -17,7 +17,7 @@ public class DefineTests {
 	@Test
 	public void simpleEvaluate() throws IOException, ParseException, LexerException {
 		Environment environment = new Environment();
-		environment.setValue("define", new Define());
+		environment.setValue("define", Define.getInstance());
 		List list = (List)(new Parser("(define a 1)")).parseExpression();
 		Object result = list.evaluate(environment);
 		
@@ -29,7 +29,7 @@ public class DefineTests {
 	public void simpleEvaluateInChildEnvironment() throws IOException, ParseException, LexerException {
 		Environment parent = new Environment();
 		Environment environment = new Environment(parent);
-		environment.setValue("define", new Define());
+		environment.setValue("define", Define.getInstance());
 		List list = (List)(new Parser("(define a 1)")).parseExpression();
 		Object result = list.evaluate(environment);
 		

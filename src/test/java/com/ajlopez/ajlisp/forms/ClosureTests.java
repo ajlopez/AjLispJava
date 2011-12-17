@@ -26,7 +26,7 @@ public class ClosureTests {
 
 		Environment environment = new Environment();
 		environment.setValue("b", 2);
-		environment.setValue("cons", new Cons());
+		environment.setValue("cons", Cons.getInstance());
 		Environment closureenv = new Environment(environment);
 		closureenv.setValue("b", 3);
 		

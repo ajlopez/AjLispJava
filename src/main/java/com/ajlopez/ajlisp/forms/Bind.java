@@ -6,7 +6,7 @@ import com.ajlopez.ajlisp.List;
 import com.ajlopez.ajlisp.primitives.Do;
 
 public class Bind implements IForm {
-	private static Do doprim = new Do();
+	private static Do doprim = Do.getInstance();
 	private Object names;
 	private List body;
 	
