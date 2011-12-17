@@ -50,4 +50,12 @@ public class Machine {
 		
 		return object.toString();
 	}
+
+	public static List evaluateList(Environment environment, List list)
+	{
+		if (list == null)
+			return null;
+		
+		return new List(Machine.evaluate(environment, list.first()), evaluateList(environment, (List) list.rest()));   
+	}
 }

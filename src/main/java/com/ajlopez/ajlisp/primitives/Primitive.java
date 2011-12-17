@@ -10,14 +10,6 @@ public abstract class Primitive implements IForm {
 	public abstract Object apply(Environment environment, List arguments);
 	
 	public Object evaluate(Environment environment, List arguments) {
-		return apply(environment, evaluateList(environment, arguments));
-	}
-
-	private static List evaluateList(Environment environment, List list)
-	{
-		if (list == null)
-			return null;
-		
-		return new List(Machine.evaluate(environment, list.first()), evaluateList(environment, (List) list.rest()));   
+		return apply(environment, Machine.evaluateList(environment, arguments));
 	}
 }
