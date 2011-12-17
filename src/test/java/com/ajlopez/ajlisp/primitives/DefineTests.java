@@ -41,7 +41,7 @@ public class DefineTests {
 	}
 
 	@Test
-	public void defineFunction() throws IOException, ParseException, LexerException {
+	public void defineForm() throws IOException, ParseException, LexerException {
 		Environment environment = new Environment();
 		environment.setValue("define", Define.getInstance());
 		environment.setValue("cons", Cons.getInstance());
