@@ -62,6 +62,16 @@ public class EvaluationTests {
 		assertEquals("(c)", evaluateExpressionAsString("(rest a)"));
 	}
 	
+	@Test
+	public void evaluateDo() throws IOException, ParseException, LexerException
+	{
+		assertEquals(3, evaluateExpression("(do (define a 1) (define b 2) (define c 3))"));
+		
+		assertEquals(1, evaluateExpression("a"));
+		assertEquals(2, evaluateExpression("b"));
+		assertEquals(3, evaluateExpression("c"));
+	}
+	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
 		Parser parser = new Parser(text);
