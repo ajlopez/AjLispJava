@@ -104,4 +104,17 @@ public class LexerTests {
 		
 		assertNull(lexer.nextToken());
 	}
+
+	@Test
+	public void getInteger() throws IOException, LexerException {
+		Lexer lexer = new Lexer("123");
+		
+		Token token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("123", token.getValue());
+		assertEquals(TokenType.INTEGER, token.getType());
+		
+		assertNull(lexer.nextToken());
+	}
 }

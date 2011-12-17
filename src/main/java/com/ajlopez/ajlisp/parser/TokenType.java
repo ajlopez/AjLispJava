@@ -1,6 +1,6 @@
 package com.ajlopez.ajlisp.parser;
 
 public enum TokenType {
-	NAME, SEPARATOR, OPERATOR, STRING
+	NAME, SEPARATOR, OPERATOR, STRING, INTEGER
 
 }

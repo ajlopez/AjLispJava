@@ -29,6 +29,8 @@ public class Parser {
 					return this.parseList();
 			case STRING:
 				return token.getValue();
+			case INTEGER:
+				return Integer.parseInt(token.getValue());
 		}
 		
 		throw new ParseException("Unexpected Token");

@@ -41,6 +41,9 @@ public class Lexer {
 		if (ch == '"')
 			return nextString();
 		
+		if (Character.isDigit(ch))
+			return nextInteger(ch);
+		
 		String value = "";
 		
 		while (ich != -1 && !Character.isSpaceChar((char) ich) && !(separators.indexOf((char)ich)>=0)) {
@@ -67,4 +70,18 @@ public class Lexer {
 		
 		return new Token(value, TokenType.STRING);
 	}
+	
+	private Token nextInteger(char ch) throws LexerException, IOException {
+		String value = "" + ch;
+		int ich;
+		
+		for (ich = this.reader.read(); ich != -1 && Character.isDigit((char)ich); ich = this.reader.read())
+			value += (char)ich;
+		
+		if (ich != -1)
+			this.characters.push((char)ich);
+		
+		return new Token(value, TokenType.INTEGER);
+	}
 }
+
