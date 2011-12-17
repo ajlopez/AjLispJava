@@ -85,5 +85,19 @@ public class ParserTests {
 		assertTrue(first instanceof Atom);
 		assertEquals("c", ((Atom)first).getName());
 	}
+
+	@Test
+	public void parseNestedListMixedValues() throws IOException, ParseException {
+		Parser parser = new Parser("(a (123 \"foo\") c d)");
+		
+		Object result = parser.parseExpression();
+		
+		assertNotNull(result);
+		assertTrue(result instanceof List);
+		
+		List list = (List)result;
+		
+		assertEquals("(a (123 \"foo\") c d)", list.printString());
+	}
 }
 

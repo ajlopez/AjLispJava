@@ -25,11 +25,8 @@ public class Machine {
 		if (object == null)
 			return "nil";
 		
-		if (object instanceof List)
-			return ((List) object).printString();
-		
-		if (object instanceof Atom)
-			return ((Atom)object).getName();
+		if (object instanceof IExpression)
+			return ((IExpression) object).printString();
 		
 		// TODO review escape sequence
 		if (object instanceof String)
