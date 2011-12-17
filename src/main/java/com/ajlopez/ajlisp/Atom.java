@@ -7,7 +7,7 @@ public class Atom implements IExpression {
 		this.name = name;
 	}
 
-	public Object getName() {
+	public String getName() {
 		return this.name;
 	}
 

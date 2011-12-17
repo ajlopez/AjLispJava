@@ -29,4 +29,25 @@ public class List implements IExpression {
 		IForm form = (IForm) Machine.evaluate(environment, this.first);
 		return form.evaluate(environment, (List) this.rest);
 	}
+
+	public String printString() {
+		// TODO use string buffer
+		String result = "(";
+		
+		result += Machine.printString(this.first);
+		
+		Object rest = this.rest;
+		
+		while (rest != null) 
+		{
+			result += " ";
+			List list = (List)rest;
+			result += Machine.printString(list.first());
+			rest = list.rest();
+		}
+		
+		result += ")";
+		
+		return result;
+	}
 }

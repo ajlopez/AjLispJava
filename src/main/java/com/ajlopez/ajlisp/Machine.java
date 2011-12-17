@@ -3,8 +3,7 @@ package com.ajlopez.ajlisp;
 public class Machine {
 	private Environment environment = new Environment();
 	
-	public static Object evaluate(Environment environment, Object object)
-	{
+	public static Object evaluate(Environment environment, Object object) {
 		if (object == null)
 			return null;
 		
@@ -20,5 +19,22 @@ public class Machine {
 
 	public Object evaluate(Object object) {
 		return evaluate(this.environment, object);
+	}
+	
+	public static String printString(Object object) {
+		if (object == null)
+			return "nil";
+		
+		if (object instanceof List)
+			return ((List) object).printString();
+		
+		if (object instanceof Atom)
+			return ((Atom)object).getName();
+		
+		// TODO review escape sequence
+		if (object instanceof String)
+			return "\"" + ((String) object) + "\"";
+		
+		return object.toString();
 	}
 }

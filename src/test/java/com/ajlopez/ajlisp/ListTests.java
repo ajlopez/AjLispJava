@@ -61,5 +61,15 @@ public class ListTests {
 		
 		assertEquals(a, result);
 	}
+
+	@Test
+	public void simpleListPrintString()
+	{
+		Atom a = new Atom("a");
+		Atom b = new Atom("b");
+		List list = new List(a, new List(b));
+		
+		assertEquals("(a b)", list.printString());
+	}
 }
 
