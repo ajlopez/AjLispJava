@@ -37,7 +37,15 @@ public class Environment {
 			}
 			
 			this.setValue(atom.getName(), value);
-			names = (List)names.rest();
+			
+			Object rest = names.rest();
+			
+			if (rest instanceof Atom) {
+				this.setValue(((Atom)rest).getName(), values);
+				return;
+			}
+			
+			names = (List)rest;
 		}
 	}
 }
