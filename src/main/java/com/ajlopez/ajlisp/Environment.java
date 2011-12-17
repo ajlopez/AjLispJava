@@ -25,4 +25,19 @@ public class Environment {
 	public void setValue(String name, Object value) {
 		this.values.put(name, value);
 	}
+	
+	public void setValues(List names, List values) {
+		while (names != null) {			
+			Atom atom = (Atom)names.first();
+			Object value = null;
+			
+			if (values != null) {
+				value = values.first();
+				values = (List)values.rest();
+			}
+			
+			this.setValue(atom.getName(), value);
+			names = (List)names.rest();
+		}
+	}
 }
