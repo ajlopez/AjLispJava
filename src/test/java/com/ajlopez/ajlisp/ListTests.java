@@ -71,5 +71,15 @@ public class ListTests {
 		
 		assertEquals("(a b)", list.printString());
 	}
+
+	@Test
+	public void dottedListPrintString()
+	{
+		Atom a = new Atom("a");
+		Atom b = new Atom("b");
+		List list = new List(a, b);
+		
+		assertEquals("(a . b)", list.printString());
+	}
 }
 

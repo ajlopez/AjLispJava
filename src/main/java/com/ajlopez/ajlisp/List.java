@@ -38,13 +38,16 @@ public class List implements IExpression {
 		
 		Object rest = this.rest;
 		
-		while (rest != null) 
-		{
+		while (rest != null && rest instanceof List) 
+		{			
 			result += " ";
-			List list = (List)rest;
+			List list = (List) rest;
 			result += Machine.printString(list.first());
 			rest = list.rest();
 		}
+
+		if (rest != null)
+			result += " . " + Machine.printString(rest);
 		
 		result += ")";
 		
