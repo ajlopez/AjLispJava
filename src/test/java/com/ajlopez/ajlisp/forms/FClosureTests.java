@@ -16,7 +16,6 @@ import com.ajlopez.ajlisp.primitives.Cons;
 
 public class FClosureTests {
 
-
 	@Test
 	public void simpleEvaluate() throws IOException, ParseException, LexerException {
 		Object names = (new Parser("(a b)")).parseExpression();
