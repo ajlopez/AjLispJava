@@ -35,17 +35,21 @@ public class Parser {
 	private Object parseList() throws IOException, ParseException
 	{
 		Token token = this.nextToken();
-		Stack<Object> expressions = new Stack<Object>();		
+		Stack<Object> expressions = new Stack<Object>();	
+		Object result = null;
 		
 		while (!(token.getType() == TokenType.SEPARATOR && token.getValue().equals(")")))
 		{
 			this.pushToken(token);
 			expressions.push(this.parseExpression());
 			token = this.nextToken();
+			
+			if (token.getType() == TokenType.OPERATOR && token.getValue().equals(".")) {
+				result = this.parseExpression();
+				break;
+			}
 		}
-		
-		Object result = null;
-		
+				
 		while (!expressions.empty())
 			result = new List(expressions.pop(), result);
 		

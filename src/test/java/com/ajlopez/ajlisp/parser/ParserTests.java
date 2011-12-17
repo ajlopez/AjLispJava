@@ -99,5 +99,27 @@ public class ParserTests {
 		
 		assertEquals("(a (123 \"foo\") c d)", list.printString());
 	}
+
+	@Test
+	public void parseDottedList() throws IOException, ParseException {
+		Parser parser = new Parser("(a . b)");
+		
+		Object result = parser.parseExpression();
+		
+		assertNotNull(result);
+		assertTrue(result instanceof List);
+		
+		List list = (List)result;
+		Object first = list.first();
+		Object rest = list.rest();
+		
+		assertNotNull(first);
+		assertTrue(first instanceof Atom);
+		assertEquals("a", ((Atom)first).getName());
+		
+		assertNotNull(rest);
+		assertTrue(rest instanceof Atom);
+		assertEquals("b", ((Atom)rest).getName());
+	}
 }
 

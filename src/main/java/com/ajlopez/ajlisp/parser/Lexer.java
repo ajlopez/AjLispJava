@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class Lexer {
 	private static String separators = "()";
+	private static String operators = ".";
 	private Reader reader;
 	private Stack<Character> characters = new Stack<Character>();
 
@@ -33,6 +34,9 @@ public class Lexer {
 		
 		if (separators.indexOf(ch) >= 0)
 			return new Token("" + ch, TokenType.SEPARATOR);
+
+		if (operators.indexOf(ch) >= 0)
+			return new Token("" + ch, TokenType.OPERATOR);
 		
 		String value = "";
 		
