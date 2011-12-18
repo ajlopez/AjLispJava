@@ -68,6 +68,19 @@ public class LexerTests {
 	}
 
 	@Test
+	public void getQuoteAsOperator() throws IOException, LexerException {
+		Lexer lexer = new Lexer("'");
+		
+		Token token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("'", token.getValue());
+		assertEquals(TokenType.OPERATOR, token.getType());
+		
+		assertNull(lexer.nextToken());
+	}
+
+	@Test
 	public void getSimpleList() throws IOException, LexerException {
 		Lexer lexer = new Lexer("(a)");
 		

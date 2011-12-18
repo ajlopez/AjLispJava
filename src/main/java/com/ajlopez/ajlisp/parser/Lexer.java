@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class Lexer {
 	private static String separators = "()";
-	private static String operators = ".";
+	private static String operators = ".'";
 	private Reader reader;
 	private Stack<Character> characters = new Stack<Character>();
 

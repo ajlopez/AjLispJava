@@ -7,6 +7,8 @@ import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.List;
 
 public class Parser {
+	private static Atom quoteAtom = new Atom("quote");
+	
 	private Lexer lexer;
 	private Stack<Token> tokens = new Stack<Token>();
 	
@@ -33,6 +35,10 @@ public class Parser {
 				return token.getValue();
 			case INTEGER:
 				return Integer.parseInt(token.getValue());
+			case OPERATOR:
+				if (token.getValue().equals("'")) {
+					return new List(quoteAtom, new List(this.parseExpression()));
+				}
 		}
 		
 		throw new ParseException("Unexpected Token");

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.List;
+import com.ajlopez.ajlisp.Machine;
 
 public class ParserTests {
 
@@ -126,6 +127,15 @@ public class ParserTests {
 	public void parseNil() throws IOException, ParseException, LexerException {
 		Parser parser = new Parser("nil");
 		assertNull(parser.parseExpression());
+	}
+	
+	@Test
+	public void parseQuotedAtom() throws IOException, ParseException, LexerException {
+		Parser parser = new Parser("'a");
+		Object result = parser.parseExpression();
+		
+		assertNotNull(result);
+		assertEquals("(quote a)", Machine.printString(result));
 	}
 }
 
