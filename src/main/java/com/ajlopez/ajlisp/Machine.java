@@ -6,6 +6,7 @@ import com.ajlopez.ajlisp.primitives.Define;
 import com.ajlopez.ajlisp.primitives.Definef;
 import com.ajlopez.ajlisp.primitives.Definem;
 import com.ajlopez.ajlisp.primitives.Do;
+import com.ajlopez.ajlisp.primitives.Equalp;
 import com.ajlopez.ajlisp.primitives.FLambda;
 import com.ajlopez.ajlisp.primitives.First;
 import com.ajlopez.ajlisp.primitives.If;
@@ -38,6 +39,7 @@ public class Machine {
 		this.environment.setValue("definef", Definef.getInstance());
 		this.environment.setValue("definem", Definem.getInstance());
 		this.environment.setValue("do", Do.getInstance());
+		this.environment.setValue("equal?", Equalp.getInstance());
 		this.environment.setValue("first", First.getInstance());
 		this.environment.setValue("flambda", FLambda.getInstance());
 		this.environment.setValue("if", If.getInstance());
