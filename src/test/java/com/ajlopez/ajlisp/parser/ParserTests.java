@@ -121,5 +121,11 @@ public class ParserTests {
 		assertTrue(rest instanceof Atom);
 		assertEquals("b", ((Atom)rest).getName());
 	}
+	
+	@Test
+	public void parseNil() throws IOException, ParseException, LexerException {
+		Parser parser = new Parser("nil");
+		assertNull(parser.parseExpression());
+	}
 }
 
