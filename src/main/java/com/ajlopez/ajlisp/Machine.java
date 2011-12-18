@@ -8,7 +8,10 @@ import com.ajlopez.ajlisp.primitives.Do;
 import com.ajlopez.ajlisp.primitives.FLambda;
 import com.ajlopez.ajlisp.primitives.First;
 import com.ajlopez.ajlisp.primitives.Lambda;
+import com.ajlopez.ajlisp.primitives.Let;
+import com.ajlopez.ajlisp.primitives.LetRec;
 import com.ajlopez.ajlisp.primitives.MLambda;
+import com.ajlopez.ajlisp.primitives.Nilp;
 import com.ajlopez.ajlisp.primitives.Quote;
 import com.ajlopez.ajlisp.primitives.Rest;
 
@@ -34,7 +37,10 @@ public class Machine {
 		this.environment.setValue("first", First.getInstance());
 		this.environment.setValue("flambda", FLambda.getInstance());
 		this.environment.setValue("lambda", Lambda.getInstance());
+		this.environment.setValue("let", Let.getInstance());
+		this.environment.setValue("letrec", LetRec.getInstance());
 		this.environment.setValue("mlambda", MLambda.getInstance());
+		this.environment.setValue("nil?", Nilp.getInstance());
 		this.environment.setValue("quote", Quote.getInstance());
 		this.environment.setValue("rest", Rest.getInstance());
 	}
