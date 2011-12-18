@@ -157,6 +157,16 @@ public class EvaluationTests {
 		assertEquals("(nil)", evaluateExpressionAsString("(mapcond nil? (list 1 nil 3))"));
 	}
 	
+	@Test
+	public void readAndEvaluateCond() throws IOException, ParseException, LexerException {
+		loadResource("cond.lsp");
+		assertEquals(null, evaluateExpression("(cond)"));
+		assertEquals(null, evaluateExpression("(cond (nil a))"));
+		assertEquals("a", evaluateExpressionAsString("(cond (true 'a))"));
+		assertEquals("b", evaluateExpressionAsString("(cond (nil 'a) (true 'b))"));
+		assertEquals("c", evaluateExpressionAsString("(cond (nil 'a) (true 'b 'c))"));
+	}
+	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
 		Parser parser = new Parser(text);
