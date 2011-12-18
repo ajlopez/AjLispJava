@@ -176,6 +176,26 @@ public class EvaluationTests {
 		assertEquals(true, evaluateExpression("(and true true)"));
 	}
 	
+	@Test
+	public void readAndEvaluateBackquote() throws IOException, ParseException, LexerException {
+		loadResource("append.lsp");
+		loadResource("cond.lsp");
+		loadResource("and.lsp");
+		loadResource("backquote.lsp");
+		assertEquals("(a b c)", evaluateExpressionAsString("(backquote (a b c))"));
+		assertEquals("(a (b c) d)", evaluateExpressionAsString("(backquote (a (b c) d))"));
+		
+		evaluateExpression("(define x '(b b))");
+		
+		assertEquals("(b b)", evaluateExpressionAsString("(backquote (unquote x))"));
+		assertEquals("((b b))", evaluateExpressionAsString("(backquote ((unquote x)))"));
+		assertEquals("(a (b b) c)", evaluateExpressionAsString("(backquote (a (unquote x) c))"));
+		assertEquals("(a ((b b)) c)", evaluateExpressionAsString("(backquote (a ((unquote x)) c))"));
+
+		assertEquals("(b b)", evaluateExpressionAsString("(backquote ((unquote-slice x)))"));
+		assertEquals("(a b b c)", evaluateExpressionAsString("(backquote (a (unquote-slice x) c))"));
+	}
+	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
 		Parser parser = new Parser(text);
