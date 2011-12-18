@@ -1,5 +1,6 @@
 package com.ajlopez.ajlisp;
 
+import com.ajlopez.ajlisp.primitives.Atomp;
 import com.ajlopez.ajlisp.primitives.Cons;
 import com.ajlopez.ajlisp.primitives.Define;
 import com.ajlopez.ajlisp.primitives.Definef;
@@ -31,6 +32,7 @@ public class Machine {
 	}
 	
 	public Machine() {
+		this.environment.setValue("atom?", Atomp.getInstance());
 		this.environment.setValue("cons", Cons.getInstance());
 		this.environment.setValue("define", Define.getInstance());
 		this.environment.setValue("definef", Definef.getInstance());
