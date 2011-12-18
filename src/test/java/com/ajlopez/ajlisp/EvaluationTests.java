@@ -150,6 +150,13 @@ public class EvaluationTests {
 		assertEquals("(1 2 3)", evaluateExpressionAsString("(mapfirst first (quote ((1) (2) (3))))"));
 	}
 	
+	@Test
+	public void readAndEvaluateMapCond() throws IOException, ParseException, LexerException {
+		loadResource("mapcond.lsp");
+		assertEquals("((2))", evaluateExpressionAsString("(mapcond list? (list 1 (list 2) 3))"));
+		assertEquals("(nil)", evaluateExpressionAsString("(mapcond nil? (list 1 nil 3))"));
+	}
+	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
 		Parser parser = new Parser(text);

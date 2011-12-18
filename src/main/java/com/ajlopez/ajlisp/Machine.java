@@ -11,6 +11,7 @@ import com.ajlopez.ajlisp.primitives.If;
 import com.ajlopez.ajlisp.primitives.Lambda;
 import com.ajlopez.ajlisp.primitives.Let;
 import com.ajlopez.ajlisp.primitives.LetRec;
+import com.ajlopez.ajlisp.primitives.Listp;
 import com.ajlopez.ajlisp.primitives.MLambda;
 import com.ajlopez.ajlisp.primitives.Nilp;
 import com.ajlopez.ajlisp.primitives.Quote;
@@ -42,6 +43,7 @@ public class Machine {
 		this.environment.setValue("let", Let.getInstance());
 		this.environment.setValue("letrec", LetRec.getInstance());
 		this.environment.setValue("list", com.ajlopez.ajlisp.primitives.List.getInstance());
+		this.environment.setValue("list?", Listp.getInstance());
 		this.environment.setValue("mlambda", MLambda.getInstance());
 		this.environment.setValue("nil?", Nilp.getInstance());
 		this.environment.setValue("quote", Quote.getInstance());
