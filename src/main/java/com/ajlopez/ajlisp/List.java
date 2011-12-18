@@ -53,4 +53,32 @@ public class List implements IExpression {
 		
 		return result;
 	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		
+		if (this.first != null)
+			hash += this.first.hashCode();
+		
+		hash *= 17;
+		
+		if (this.rest != null)
+			hash += this.rest.hashCode();
+		
+		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		
+		if (!(obj instanceof List))
+			return false;
+		
+		List list = (List)obj;
+		
+		return Predicates.equals(this.first, list.first) && Predicates.equals(this.rest, list.rest);
+	}
 }
