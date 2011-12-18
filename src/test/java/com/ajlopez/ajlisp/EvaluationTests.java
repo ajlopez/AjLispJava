@@ -133,6 +133,13 @@ public class EvaluationTests {
 		evaluateExpression("(define mcons (mlambda (a b) (cons a b)))");
 		assertEquals(1, evaluateExpression("(mcons first ((quote (1 2))))"));
 	}
+
+	@Test
+	public void defineAndEvaluateAppend() throws IOException, ParseException, LexerException
+	{
+		evaluateExpression("(define append (x y) (if (nil? x) y (cons (first x) (append (rest x) y))))");
+		assertEquals("(1 2 3 4)", evaluateExpressionAsString("(append '(1 2) '(3 4))"));
+	}
 	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
