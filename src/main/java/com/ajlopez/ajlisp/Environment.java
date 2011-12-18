@@ -63,6 +63,30 @@ public class Environment {
 		this.setValue(atom.getName(), values);
 	}
 	
+	public void setExpressions(List names, List expressions) {
+		while (names != null) {			
+			Atom atom = (Atom)names.first();
+			Object value = null;
+			
+			if (expressions != null) {
+				Object expression = expressions.first();
+				value = Machine.evaluate(this,  expression);
+				expressions = (List)expressions.rest();
+			}
+			
+			this.setValue(atom.getName(), value);
+			
+			Object rest = names.rest();
+			
+			if (rest instanceof Atom) {
+				this.setValue(((Atom)rest).getName(), Machine.evaluateList(this, expressions));
+				return;
+			}
+			
+			names = (List)rest;
+		}
+	}
+	
 	public Environment getTopEnvironment(){
 		if (this.parent == null)
 			return this;
