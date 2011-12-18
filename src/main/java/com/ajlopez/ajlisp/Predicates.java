@@ -13,4 +13,8 @@ public class Predicates {
 			return true;
 		return false;
 	}
+	
+	public static boolean isNil(Object obj) {
+		return obj == null;
+	}
 }

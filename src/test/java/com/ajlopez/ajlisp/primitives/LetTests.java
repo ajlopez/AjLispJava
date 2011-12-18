@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
-import com.ajlopez.ajlisp.Machine;
-import com.ajlopez.ajlisp.forms.Closure;
 import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
