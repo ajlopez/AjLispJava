@@ -147,6 +147,7 @@ public class EvaluationTests {
 	public void readAndEvaluateMapFirst() throws IOException, ParseException, LexerException {
 		loadResource("mapfirst.lsp");
 		assertEquals("((1) (2) (3))", evaluateExpressionAsString("(mapfirst list (list 1 2 3))"));
+		assertEquals("(1 2 3)", evaluateExpressionAsString("(mapfirst first (quote ((1) (2) (3))))"));
 	}
 	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
