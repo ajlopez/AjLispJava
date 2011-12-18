@@ -18,4 +18,19 @@ public class Atom implements IExpression {
 	public String printString() {
 		return this.name;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Atom))
+			return false;
+		
+		return this.getName().equals(((Atom)obj).getName());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.name.hashCode();
+	}
 }

@@ -23,4 +23,17 @@ public class AtomTests {
 		
 		assertEquals(1, atom.evaluate(environment));
 	}
+
+	@Test
+	public void equalsAtoms() {
+		Atom atom = new Atom("foo");
+		Atom atom2 = new Atom("foo");
+		Atom atom3 = new Atom("bar");
+		
+		assertEquals(atom, atom2);
+		assertEquals(atom.hashCode(), atom2.hashCode());
+		assertEquals(atom2, atom);
+		assertFalse(atom.equals(atom3));
+		assertFalse(atom3.equals(atom));
+	}
 }
