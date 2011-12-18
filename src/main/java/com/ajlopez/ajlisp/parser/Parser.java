@@ -27,6 +27,10 @@ public class Parser {
 			case NAME:
 				if (token.getValue().equals("nil"))
 					return null;
+				if (token.getValue().equals("false"))
+					return false;
+				if (token.getValue().equals("true"))
+					return true;
 				return new Atom(token.getValue());
 			case SEPARATOR:
 				if (token.getValue().equals("("))

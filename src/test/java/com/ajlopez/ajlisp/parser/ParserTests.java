@@ -137,5 +137,19 @@ public class ParserTests {
 		assertNotNull(result);
 		assertEquals("(quote a)", Machine.printString(result));
 	}
+	
+	@Test
+	public void parseBooleans() throws IOException, ParseException, LexerException {
+		Parser parser = new Parser("false true");
+		Object result = parser.parseExpression();
+		
+		assertEquals(false, result);
+		
+		result = parser.parseExpression();
+		
+		assertEquals(true, result);
+		
+		assertNull(parser.parseExpression());
+	}
 }
 
