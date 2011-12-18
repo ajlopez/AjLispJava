@@ -167,6 +167,15 @@ public class EvaluationTests {
 		assertEquals("c", evaluateExpressionAsString("(cond (nil 'a) (true 'b 'c))"));
 	}
 	
+	@Test
+	public void readAndEvaluateAnd() throws IOException, ParseException, LexerException {
+		loadResource("cond.lsp");
+		loadResource("and.lsp");
+		assertEquals(true, evaluateExpression("(and)"));
+		assertEquals(false, evaluateExpression("(and false)"));
+		assertEquals(true, evaluateExpression("(and true true)"));
+	}
+	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
 		Parser parser = new Parser(text);
