@@ -3,10 +3,12 @@ package com.ajlopez.ajlisp;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ajlopez.ajlisp.parser.Lexer;
 import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
@@ -141,6 +143,12 @@ public class EvaluationTests {
 		assertEquals("(1 2 3 4)", evaluateExpressionAsString("(append '(1 2) '(3 4))"));
 	}
 	
+	@Test
+	public void readAndEvaluateMapFirst() throws IOException, ParseException, LexerException {
+		loadResource("mapfirst.lsp");
+		assertEquals("((1) (2) (3))", evaluateExpressionAsString("(mapfirst list (list 1 2 3))"));
+	}
+	
 	private Object evaluateExpression(String text) throws IOException, ParseException, LexerException
 	{
 		Parser parser = new Parser(text);
@@ -150,5 +158,13 @@ public class EvaluationTests {
 	
 	private String evaluateExpressionAsString(String text) throws IOException, ParseException, LexerException {
 		return Machine.printString(this.evaluateExpression(text));
+	}
+	
+	private void loadResource(String name) throws IOException, ParseException, LexerException {
+		Lexer lexer = new Lexer(new InputStreamReader(getClass().getResourceAsStream(name)));
+		Parser parser = new Parser(lexer);
+		
+		for (Object expr = parser.parseExpression(); expr != null; expr = parser.parseExpression())
+			this.machine.evaluate(expr);
 	}
 }

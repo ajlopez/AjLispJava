@@ -12,7 +12,12 @@ public class Lexer {
 	private Stack<Character> characters = new Stack<Character>();
 
 	public Lexer(String text) {
-		this.reader = new StringReader(text);
+		this(new StringReader(text));
+	}
+	
+	public Lexer(Reader reader)
+	{
+		this.reader = reader;
 	}
 
 	public Token nextToken() throws IOException, LexerException  {
@@ -24,7 +29,7 @@ public class Lexer {
 		else
 			ich = this.characters.pop();
 		
-		while (ich != -1 && Character.isSpaceChar((char) ich))
+		while (ich != -1 && (Character.isSpaceChar((char) ich) || Character.isISOControl((char) ich)))
 			ich = this.reader.read();
 		
 		if (ich == -1)
@@ -46,7 +51,7 @@ public class Lexer {
 		
 		String value = "";
 		
-		while (ich != -1 && !Character.isSpaceChar((char) ich) && !(separators.indexOf((char)ich)>=0)) {
+		while (ich != -1 && !Character.isISOControl((char) ich) && !Character.isSpaceChar((char) ich) && !(separators.indexOf((char)ich)>=0)) {
 			value += (char)ich;
 			
 			ich = this.reader.read();

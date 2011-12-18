@@ -41,6 +41,7 @@ public class Machine {
 		this.environment.setValue("lambda", Lambda.getInstance());
 		this.environment.setValue("let", Let.getInstance());
 		this.environment.setValue("letrec", LetRec.getInstance());
+		this.environment.setValue("list", com.ajlopez.ajlisp.primitives.List.getInstance());
 		this.environment.setValue("mlambda", MLambda.getInstance());
 		this.environment.setValue("nil?", Nilp.getInstance());
 		this.environment.setValue("quote", Quote.getInstance());

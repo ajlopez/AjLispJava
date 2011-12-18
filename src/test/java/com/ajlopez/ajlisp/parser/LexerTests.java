@@ -36,6 +36,25 @@ public class LexerTests {
 	}
 
 	@Test
+	public void getNamesSeparatedByNewLine() throws IOException, LexerException {
+		Lexer lexer = new Lexer("  foo\r\nbar  ");
+		
+		Token token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("foo", token.getValue());
+		assertEquals(TokenType.NAME, token.getType());
+		
+		token = lexer.nextToken();
+		
+		assertNotNull(token);
+		assertEquals("bar", token.getValue());
+		assertEquals(TokenType.NAME, token.getType());
+		
+		assertNull(lexer.nextToken());
+	}
+
+	@Test
 	public void getNameWithSpecialChar() throws IOException, LexerException {
 		Lexer lexer = new Lexer("nil?");
 		

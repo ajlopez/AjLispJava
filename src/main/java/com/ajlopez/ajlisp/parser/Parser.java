@@ -13,7 +13,11 @@ public class Parser {
 	private Stack<Token> tokens = new Stack<Token>();
 	
 	public Parser(String string) {
-		this.lexer = new Lexer(string);
+		this(new Lexer(string));
+	}
+	
+	public Parser(Lexer lexer) {
+		this.lexer = lexer;
 	}
 
 	public Object parseExpression() throws IOException, ParseException, LexerException {
