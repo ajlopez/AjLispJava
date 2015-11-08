@@ -8,25 +8,27 @@ import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
 
-public class RestTests {
+public class FirstTest {
 
 	@Test
 	public void applyToSimpleList() {
+		First first = First.getInstance();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
 		
-		assertNull(Rest.getInstance().apply(environment, new List(list)));
+		assertEquals(a, first.apply(environment, new List(list)));
 	}
 
 	@Test
 	public void evaluateSimpleList() {
+		First first = First.getInstance();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
 		Atom b = new Atom("b");
 		environment.setValue("b", list);
 		
-		assertNull(Rest.getInstance().evaluate(environment, new List(b)));
+		assertEquals(a, first.evaluate(environment, new List(b)));
 	}
 }

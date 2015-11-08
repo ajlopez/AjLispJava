@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.ajlopez.ajlisp.primitives.First;
 
-public class MachineTests {
+public class MachineTest {
 
 	@Test
 	public void evaluateObjects() {

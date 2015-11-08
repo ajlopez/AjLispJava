@@ -14,7 +14,7 @@ import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
 
-public class DefineTests {
+public class DefineTest {
 
 	@Test
 	public void simpleEvaluate() throws IOException, ParseException, LexerException {

@@ -8,17 +8,16 @@ import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
 
-public class AtompTests {
+public class QuoteTest {
 
 	@Test
 	public void simpleEvaluate() {
-		Atomp atomp = Atomp.getInstance();
 		Environment environment = new Environment();
-		Atom a = new Atom("a");
-		List list = new List(a);
-
-		assertEquals(false, atomp.apply(environment, null));
-		assertEquals(true, atomp.apply(environment, list));
-		assertEquals(false, atomp.apply(environment, new List(list)));
+		Atom atom = new Atom("a");
+		
+		Object result = Quote.getInstance().evaluate(environment, new List(atom));
+		
+		assertNotNull(result);
+		assertEquals(atom, result);
 	}
 }

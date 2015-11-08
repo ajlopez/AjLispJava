@@ -14,7 +14,7 @@ import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
 
-public class MLambdaTests {
+public class MLambdaTest {
 
 	@Test
 	public void evaluateCons() throws IOException, ParseException, LexerException {

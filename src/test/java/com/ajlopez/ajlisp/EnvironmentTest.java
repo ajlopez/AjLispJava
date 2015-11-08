@@ -10,7 +10,7 @@ import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
 
-public class EnvironmentTests {
+public class EnvironmentTest {
 
 	@Test
 	public void createAndGetValue() {

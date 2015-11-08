@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.ajlopez.ajlisp.primitives.First;
 
-public class ListTests {
+public class ListTest {
 
 	@Test
 	public void createWithConstant() {

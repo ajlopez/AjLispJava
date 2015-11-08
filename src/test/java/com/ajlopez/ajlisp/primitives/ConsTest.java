@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
 
-public class ConsTests {
+public class ConsTest {
 
 	@Test
 	public void applySimple() {

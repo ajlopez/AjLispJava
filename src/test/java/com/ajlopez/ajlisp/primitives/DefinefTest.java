@@ -9,28 +9,30 @@ import org.junit.Test;
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
 import com.ajlopez.ajlisp.Machine;
-import com.ajlopez.ajlisp.forms.Closure;
+import com.ajlopez.ajlisp.forms.FClosure;
 import com.ajlopez.ajlisp.parser.LexerException;
 import com.ajlopez.ajlisp.parser.ParseException;
 import com.ajlopez.ajlisp.parser.Parser;
 
-public class LambdaTests {
+public class DefinefTest {
 
 	@Test
-	public void simpleEvaluate() throws IOException, ParseException, LexerException {
+	public void defineSpecialForm() throws IOException, ParseException, LexerException {
 		Environment environment = new Environment();
+		environment.setValue("definef", Definef.getInstance());
 		environment.setValue("cons", Cons.getInstance());
 		environment.setValue("quote", Quote.getInstance());
-		List arguments = (List)(new Parser("((a b) (cons a b))")).parseExpression();
-		Lambda lambda = Lambda.getInstance();
-		Object result = lambda.evaluate(environment, arguments);
 		
-		assertTrue(result instanceof Closure);
+		List list = (List)(new Parser("(definef mycons (a b) (cons a b))")).parseExpression();
+		Object result = list.evaluate(environment);
 
-		arguments = (List)(new Parser("((quote a) (quote (b c)))")).parseExpression();
+		assertTrue(result instanceof FClosure);
 		
-		Closure closure = (Closure)result;
+		FClosure closure = (FClosure)result;
+		
+		List arguments = (List)(new Parser("(a (b c)))")).parseExpression();
 		result = closure.evaluate(environment, arguments);
+		
 		assertEquals("(a b c)", Machine.printString(result));
 	}
 

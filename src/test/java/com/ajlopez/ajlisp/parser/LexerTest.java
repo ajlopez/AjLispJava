@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-public class LexerTests {
+public class LexerTest {
 
 	@Test
 	public void getName() throws IOException, LexerException {

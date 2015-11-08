@@ -8,16 +8,17 @@ import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
 
-public class NilpTests {
+public class AtompTest {
 
 	@Test
 	public void simpleEvaluate() {
-		Nilp nilp = Nilp.getInstance();
+		Atomp atomp = Atomp.getInstance();
 		Environment environment = new Environment();
 		Atom a = new Atom("a");
 		List list = new List(a);
 
-		assertEquals(true, nilp.apply(environment, null));
-		assertEquals(true, nilp.evaluate(environment, list));
+		assertEquals(false, atomp.apply(environment, null));
+		assertEquals(true, atomp.apply(environment, list));
+		assertEquals(false, atomp.apply(environment, new List(list)));
 	}
 }

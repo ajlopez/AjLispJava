@@ -10,7 +10,7 @@ import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.List;
 import com.ajlopez.ajlisp.Machine;
 
-public class ParserTests {
+public class ParserTest {
 
 	@Test
 	public void parseAtom() throws IOException, ParseException, LexerException {

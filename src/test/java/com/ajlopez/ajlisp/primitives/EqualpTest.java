@@ -8,7 +8,7 @@ import com.ajlopez.ajlisp.Atom;
 import com.ajlopez.ajlisp.Environment;
 import com.ajlopez.ajlisp.List;
 
-public class EqualpTests {
+public class EqualpTest {
 
 	@Test
 	public void simpleEvaluate() {

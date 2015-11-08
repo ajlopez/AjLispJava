@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class AtomTests {
+public class AtomTest {
 
 	@Test
 	public void createAtom() {
